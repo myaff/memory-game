@@ -1,0 +1,61 @@
+.card {
+  width: 100%;
+  padding-bottom: 100%;
+  perspective: 1000px;
+  transition: all 0.6s;
+  cursor pointer;
+
+  &__inner,
+  &__front,
+  &__back {
+    absolute(0px, 0px);
+    size(100%);
+    border-radius: 5px;
+  }
+
+  &__inner {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    ^[0]--flipped &,
+    ^[0]--matched & {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__front,
+  &__back {
+    absolute(0px, 0px);
+    backface-visibility: hidden;
+  }
+
+  &__front {
+    background: $color--primary;
+    z-index: 2;
+  }
+
+  &__back {
+    flexy(center, center);
+    transform: rotateY(180deg);
+  }
+
+  &__icon {
+    font-size: 32px;
+    pointer-events: none;
+    @media $display-breakpoints.sm-and-up {
+      font-size: 48px;
+    }
+  }
+}
+
+.scale-enter-active {
+  transition: all .3s ease;
+}
+.scale-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.scale-enter, .scale-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}

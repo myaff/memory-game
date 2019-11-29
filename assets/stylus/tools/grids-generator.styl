@@ -1,0 +1,95 @@
+//************************
+//    VARIABLES
+//************************
+$gg-gridName = l-grid;
+$gg-colName = l-col;
+$gg-attributeName = class;
+
+
+$gg-grids := {
+  'g6x6': {
+    cols: 6,
+    rows: 6,
+    gutter: 10px,
+    unit: 1fr
+  },
+};
+
+str-repeat(q, str)
+  $rpt-str = '';
+  for i in 1..q
+    $rpt-str += str;
+    i += 1;
+  return $rpt-str;
+
+makeGrid($key, $grid, $gutter = 0, $unit = 1fr)
+  &[{$gg-attributeName}*=-{$key}]
+    $str = '1fr ';
+    if $gutter
+      $str = '1fr ' + $gutter + ' ';
+      grid-gap: $gutter;
+    else
+      grid-gap: 0;
+    -ms-grid-columns: unquote(str-repeat($grid.cols - 1, $str)) $unit;
+    -ms-grid-rows: unquote(str-repeat($grid.rows - 1, $str)) $unit;
+    grid-template-columns: repeat($grid.cols, $unit);
+    grid-template-rows: repeat($grid.rows, $unit);
+
+/***************
+***** GRID *****
+***************/
+[{$gg-attributeName}*={$gg-gridName}]
+  display-grid();
+
+for $key, $grid in $gg-grids
+  [{$gg-attributeName}*={$gg-gridName}]
+    makeGrid($key, $grid, $grid.gutter, $grid.unit);
+
+/***************
+***** COLS *****
+***************/
+maxCol($grids)
+  $max-col = '1';
+  for $key, $grid in $grids
+    $max-col = max($max-col, $grid.cols)
+  return $max-col;
+maxRow($grids)
+  $max-row = '1';
+  for $key, $grid in $grids
+    $max-row = max($max-row, $grid.rows)
+  return $max-row;
+
+makeCols($q, $hasGutter = true)
+  for $i in 1..$q
+    &[{$gg-attributeName}*=-x-{$i}]
+      grid-cell-position(column, $i, $hasGutter);
+    &[{$gg-attributeName}*=-w-{$i}]
+      if $hasGutter
+        grid-cell-size(column, $i, $hasGutter);
+      else
+        grid-cell-size-ms(column, $i, $hasGutter);
+makeRows($q, $hasGutter = true)
+  for $i in 1..$q
+    &[{$gg-attributeName}*=-y-{$i}]
+      grid-cell-position(row, $i, $hasGutter);
+    &[{$gg-attributeName}*=-h-{$i}]
+      if $hasGutter
+        grid-cell-size(row, $i, $hasGutter);
+      else
+        grid-cell-size-ms(row, $i, $hasGutter);
+
+[{$gg-attributeName}*={$gg-colName}]
+  [{$gg-attributeName}*={$gg-gridName}]> &
+    grid-template(columns, 1fr);
+    grid-template(rows, 1fr);
+    width: auto;
+    &,
+    &:not([{$gg-attributeName}*={$gg-colName}-0])
+      display-grid();
+      padding: 0;
+  makeCols(maxCol($gg-grids));
+  makeRows(maxRow($gg-grids));
+  [{$gg-attributeName}*={$gg-gridName}][{$gg-attributeName}*=-g0] > &,
+  [{$gg-attributeName}*={$gg-gridName}][{$gg-attributeName}*=-noGutter] > &
+    makeCols(maxCol($gg-grids), false);
+    makeRows(maxRow($gg-grids), false);

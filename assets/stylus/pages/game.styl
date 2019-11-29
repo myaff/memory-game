@@ -1,0 +1,33 @@
+.game {
+  background: #f1f1f1;
+  size(100%);
+  min-height: 100vh;
+  flexy(flex-start, stretch);
+
+  &__main {
+    flex: 1 1 75%;
+    padding: 0 20px;
+  }
+  &__aside {
+    flex: 1 1 25%;
+    background #fff;
+    display none;
+
+    @media $display-breakpoints.sm-and-up {
+      display block;
+    }
+  }
+
+  &__timer {
+    padding: 1em;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__btns {
+    absolute(0px, 0px);
+    flexy(center, center);
+    size(100%);
+  }
+}

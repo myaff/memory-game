@@ -86,3 +86,10 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Generator
+.vuegenerator
+vg-templates/*
+
+# VSC workspace
+*.code-workspace

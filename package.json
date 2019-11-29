@@ -1,0 +1,37 @@
+{
+  "name": "memory-game",
+  "version": "1.0.0",
+  "description": "memory-game",
+  "main": "index.js",
+  "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start",
+      "generate": "nuxt generate",
+      "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+      "precommit": "npm run lint",
+      "sprite": "node scripts/svg-sprite.js",
+      "stylus": "stylus -w ./assets/stylus/main.styl -o ./assets/css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myaff/memory-game.git"
+  },
+  "author": "Olga Grabko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myaff/memory-game/issues"
+  },
+  "homepage": "https://github.com/myaff/memory-game#readme",
+  "dependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/svg-sprite": "^0.4.5",
+    "eslint": "^6.7.1",
+    "nuxt": "^2.10.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "svg4everybody": "^2.1.9",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {}
+}
