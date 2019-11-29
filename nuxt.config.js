@@ -8,7 +8,14 @@ if (process.env.NODE_ENV === 'development') {
 
 const extendRoutes = require('./routes/index');
 */
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+    router: {
+        base: '/memory-game/'
+    }
+} : {}
+
 module.exports = {
+    ...routerBase,
     /*
   ** Headers of the page
   */
