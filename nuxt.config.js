@@ -1,13 +1,3 @@
-const path = require('path');
-const webpack = require('webpack');
-
-/*
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
-
-const extendRoutes = require('./routes/index');
-*/
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     router: {
         base: '/memory-game/'
@@ -15,7 +5,6 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
 } : {}
 
 module.exports = {
-    ...routerBase,
     /*
   ** Headers of the page
   */
@@ -36,7 +25,7 @@ module.exports = {
             {
                 rel: 'stylesheet',
                 href:
-          'https://fonts.googleapis.com/css?family=Alegreya:400,400i,500,500i|Rubik:400,400i,500&display=swap',
+          'https://fonts.googleapis.com/css?family=Rubik:400,400i,500&display=swap',
             },
         ],
         script: [],
@@ -63,18 +52,10 @@ module.exports = {
         height: '2px',
     },
 
-    // loadingIndicator: {
-    //     color: '#f9b000',
-    //     name: 'folding-cube',
-    // },
-
-    // loadingIndicator: '~/components/others/loading.html',
-
     /*
     ** Global CSS
     */
     css: [
-        //'swiper/css/swiper.min.css',
         {
             src: '~assets/stylus/main.styl',
             lang: 'stylus'
@@ -83,11 +64,7 @@ module.exports = {
 
     plugins: [
         { src: '~plugins/svg4everybody.js', ssr: false },
-        //'~plugins/components.js',
-        //'~plugins/grid.js',
-        //'~/plugins/device.js',
-        //'~/plugins/click-outside.js',
     ],
 
-    
+    ...routerBase,
 };
