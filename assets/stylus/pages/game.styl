@@ -1,5 +1,5 @@
 .game {
-  background: #f1f1f1;
+  background: $color--grey_light;
   size(100%);
   min-height: 100vh;
   flexy(flex-start, stretch);
@@ -12,6 +12,7 @@
     flex: 1 1 25%;
     background #fff;
     display: none;
+    box-shadow: 0 0 40px rgba(#000, 0.1);
 
     @media $display-breakpoints.sm-and-up {
       display: block;
@@ -30,4 +31,16 @@
     flexy(center, center);
     size(100%);
   }
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .3s ease;
+}
+.fade-enter-active {
+  transition-delay: 0.6s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

@@ -1,23 +1,4 @@
-const animals = [
-  "antelope",
-  "bear",
-  "bull",
-  "eagle",
-  "elephant",
-  "fox",
-  "koala",
-  "leopard",
-  "lion",
-  "panda",
-  "parrot",
-  "rabbit",
-  "raccoon",
-  "reindeer",
-  "rhinoceros",
-  "turtle",
-  "wolf",
-  "zebra"
-];
+import animals from '~/demodata/animals';
 
 const cards = [];
 

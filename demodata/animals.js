@@ -1,0 +1,20 @@
+export default [
+  "antelope",
+  "bear",
+  "bull",
+  "eagle",
+  "elephant",
+  "fox",
+  "koala",
+  "leopard",
+  "lion",
+  "panda",
+  "parrot",
+  "chameleon",
+  "raccoon",
+  "reindeer",
+  "rhinoceros",
+  "turtle",
+  "wolf",
+  "zebra"
+];

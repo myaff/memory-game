@@ -1,7 +1,9 @@
 <template>
   <div class="game">
     <div class="game__main">
-      <div class="game__timer">{{ formattedTime }}</div>
+      <transition name="fade">
+        <div v-show="active" class="game__timer">{{ formattedTime }}</div>
+      </transition>
       <cards-grid :cards="cards" class="game__cards">
         <template v-slot:card="{card}">
           <card v-show="active && !card.matched"
@@ -10,12 +12,16 @@
             :style="{transitionDelay: !card.matched ? `${card.delay}ms` : '0ms'}" />
         </template>
       </cards-grid>
-      <div v-show="!active" class="game__btns">
-        <button v-show="!done" @click="start">Start</button>
-        <button v-show="done" @click="reset">Reset</button>
-      </div>
+      <transition name="fade">
+        <div v-show="!active" class="game__btns">
+          <button v-show="!done" @click="start">Start</button>
+          <button v-show="done" @click="reset">Reset</button>
+        </div>
+      </transition>
     </div>
-    <div class="game__aside">Rating</div>
+    <div class="game__aside">
+      <rating />
+    </div>
   </div>
 </template>
 
@@ -25,10 +31,12 @@ import cardsData from '~/demodata/cards';
 // components
 import CardsGrid from '~/components/CardsGrid/CardsGrid';
 import Card from '~/components/Card/Card';
+import Rating from '~/components/Rating/Rating'
 export default {
   components: {
     CardsGrid,
     Card,
+    Rating,
   },
 
   data() {
@@ -55,8 +63,10 @@ export default {
         firstFlipMatchKey: null,
         score: [],
         cardTransform: null,
-        globalTimer: null,
-        operativeTimer: null
+        globalTimerID: null,
+        startTime: null,
+        timer: 0,
+        operativeTimerID: null,
       }
     }
   },
@@ -181,17 +191,21 @@ export default {
     finish() {
       clearTimeout(this.globalTimerID);
       this.active = false;
+      this.done = true;
     },
     reset() {
       Object.assign(this.$data, this.initialState);
       this.cards = this.updateCards(this.cards);
       this.active = true;
+      this.done = false;
+      // start timer after transitions
+      setTimeout(() => {this.startTimer()}, 100 * (this.cards.length - 1));
     },
     start() {
       Object.assign(this.$data, this.initialState);
       this.active = true;
-      this.done = true;
-      this.startTimer();
+      // start timer after transitions
+      setTimeout(() => {this.startTimer()}, 100 * (this.cards.length - 1));
     }
   }
 }
