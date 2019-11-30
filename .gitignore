@@ -93,3 +93,6 @@ vg-templates/*
 
 # VSC workspace
 *.code-workspace
+
+# node
+node_modules/*
