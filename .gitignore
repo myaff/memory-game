@@ -95,4 +95,4 @@ vg-templates/*
 *.code-workspace
 
 # dist
-#dist/*
+dist/*
