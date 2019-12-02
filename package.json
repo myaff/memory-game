@@ -13,7 +13,8 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "sprite": "node scripts/svg-sprite.js",
-    "stylus": "stylus -w ./assets/stylus/main.styl -o ./assets/css/"
+    "stylus": "stylus -w ./assets/stylus/main.styl -o ./assets/css/",
+    "deploy": "push-dir --dir=dist --branch=gh-pages"
   },
   "repository": {
     "type": "git",

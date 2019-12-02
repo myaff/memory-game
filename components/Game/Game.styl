@@ -1,0 +1,25 @@
+.game {
+  size(100%);
+  padding: 0 20px;
+  &__timer {
+    padding: 1em;
+    margin-bottom: 50px;
+  }
+
+  &__btns {
+    absolute(0px, 0px);
+    flexy(center, center);
+    size(100%);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .3s ease;
+}
+.fade-enter-active {
+  transition-delay: 0.6s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

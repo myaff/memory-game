@@ -1,0 +1,21 @@
+.home {
+  background: $color--grey_light;
+  size(100%);
+  min-height: 100vh;
+  flexy(flex-start, stretch);
+
+  &__main {
+    flex: 1 1 70%;
+  }
+  &__aside {
+    flex: 1 1 30%;
+    background #fff;
+    display: none;
+    box-shadow: 0 0 40px rgba(#000, 0.1);
+
+    @media $display-breakpoints.sm-and-up {
+      display: block;
+    }
+  }
+}
+
