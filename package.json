@@ -34,10 +34,11 @@
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg-sprite": "^0.4.5",
-    "nuxt": "^2.10.2",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
+    "cross-env": "^6.0.3",
     "eslint": "^6.7.1",
-    "cross-env": "^6.0.3"
+    "nuxt": "^2.10.2",
+    "push-dir": "^0.4.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2"
   }
 }
