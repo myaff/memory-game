@@ -1,11 +1,67 @@
 .user {
-  flexy(flex-start, baseline);
+  flexy(space-between, center);
   font-size: $font-size-base;
-  &__avatar {
-    font-size: 2em;
-    margin-right: 0.5em;
+  text-align: center;
+  padding: 8px 24px;
+  margin: 0 -24px;
+  transition: background 0.1s ease;
+  overflow: hidden;
+  transform: translateZ(0);
+
+  &.current {
+    background: rgba($color--grey_light, 0.5);
+    cursor: pointer;
+
+    .flip-list-move & {
+      background: rgba($color--error, 0.1);
+    }
   }
+
+  &__info {
+    flexy(flex-start, center);
+  }
+
+  &__avatar {
+    flexy(center, center);
+    flex: 0 0 1.5em;
+    font-size: 2em;
+    circle(1.5em);
+    margin-right: 0.5em;
+    margin-right: 0.5em;
+    background: rgba($color--grey, 0.4)
+  }
+
   &__name {
-    
+    ^[0].current & {
+      font-weight: bold;
+      transition:transform 0.5s;
+      transform: translateZ(0);
+    }
+    ^[0].current:hover & {
+      transform: translateX(1em) translateZ(0);
+    }
+  }
+
+  &__time {
+    font-weight: bold;
+    color: $color--grey_dark;
+    transform: translateZ(0);
+  }
+
+  &__settings {
+    absolute(0px, 0px);
+    z-index: 2;
+    size(88px, 100%);
+    font-size: 2em;
+    padding: 0 24px;
+    flexy(center, center);
+    background: $color--primary;
+    color:#fff;
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+
+    ^[0]:hover & {
+      transform: translateX(0);
+    }
   }
 }

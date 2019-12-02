@@ -27,16 +27,17 @@
   },
   "homepage": "https://github.com/myaff/memory-game#readme",
   "dependencies": {
-    "@nuxtjs/style-resources": "^1.0.0",
-    "@nuxtjs/svg-sprite": "^0.4.5",
-    "eslint": "^6.7.1",
-    "nuxt": "^2.10.2",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
+    "lodash": "^4.17.15",
     "svg4everybody": "^2.1.9",
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/svg-sprite": "^0.4.5",
+    "nuxt": "^2.10.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "eslint": "^6.7.1",
     "cross-env": "^6.0.3"
   }
 }

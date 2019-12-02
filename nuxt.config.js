@@ -1,3 +1,5 @@
+import webpack from 'webpack';
+
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     router: {
         base: '/memory-game/'
@@ -66,5 +68,12 @@ module.exports = {
         { src: '~plugins/svg4everybody.js', ssr: false },
     ],
 
+    build: {
+        plugins: [
+            new webpack.ProvidePlugin({
+            '_': 'lodash'
+        })
+        ]
+    },
     ...routerBase,
 };

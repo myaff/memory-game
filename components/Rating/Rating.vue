@@ -1,9 +1,9 @@
 <template>
   <div class="rating">
-    <div class="rating__title">Top gamers</div>
-    <transition-group class="rating__list" tag="ul">
-      <li v-for="user in users" :key="user.id" class="rating__item">
-        <user :user="user" />
+    <div class="rating__title tp-heading--big tp-text--center">Top gamers</div>
+    <transition-group name="flip-list" class="rating__list" tag="ul">
+      <li v-for="user in sortedUsers" :key="user.id" class="rating__item">
+        <user :user="user" @click="onClick" />
       </li>
     </transition-group>
   </div>
@@ -20,12 +20,21 @@ export default {
   },
 
   computed: {
-
+    timer() {
+      return this.$store.state.timer;
+    },
+    currentUser() {
+      return this.$store.state.user;
+    },
+    sortedUsers() {
+      return _.sortBy(this.users, 'time');
+    },
   },
 
   data() {
     return {
-      users: this.generateDemoUsers()
+      users: this.generateDemoUsers(),
+      user: {}
     }
   },
 
@@ -34,12 +43,37 @@ export default {
       let result = [];
       animals.forEach((item, index) => {
         result.push({
-          id: index,
+          id: _.uniqueId('user_'),
           icon: item,
-          name: item[0].toUpperCase() + item.slice(1)
+          name: _.upperFirst(item),
+          time: 150000 * _.random(0.5, 1.5)
         })
       });
       return result;
+    },
+    onClick() {
+      this.$emit('click');
+    }
+  },
+
+  created() {
+    this.user = {
+      id: this.currentUser.id,
+      name: this.currentUser.name,
+      icon: this.currentUser.icon,
+      current: this.currentUser.current,
+      time: 0
+    };
+    this.users.push(this.user);
+  },
+
+  watch: {
+    timer: function() {
+      this.user.time = this.timer;
+    },
+    currentUser: function() {
+      this.user.name = this.currentUser.name;
+      this.user.icon = this.currentUser.icon;
     }
   }
 };

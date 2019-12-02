@@ -4,12 +4,25 @@
   overflow-y: auto;
 
   &__title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
     margin-bottom: 1em;
   }
   &__list {
     no-style-list();
   }
+  &__item {
+    display: block;
+  }
+}
+
+.flip-list-enter-active,
+.flip-list-leave-active {
+  transition: all 1s;
+}
+.flip-list-enter,
+.flip-list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.flip-list-move {
+  transition: transform 1s;
 }

@@ -16,7 +16,7 @@
     <transition name="fade">
       <div v-show="!active" class="game__btns">
         <button v-show="!done" @click="start">Start</button>
-        <button v-show="done" @click="reset">Restart</button>
+        <button v-show="done" @click="restart">Restart</button>
       </div>
     </transition>
   </div>
@@ -156,20 +156,25 @@ export default {
       this.done = true;
       this.$emit('finish');
     },
-    reset() {
+    restart() {
       Object.assign(this.$data, this.initialState);
       this.cards = this.updateCards(this.cards);
-      this.active = true;
-      this.done = false;
+      this.$store.commit('updateTimer', 0);
+      setTimeout(() => this.active = true);
       // start timer after transitions
-      setTimeout(() => {this.startTimer()}, 100 * (this.cards.length - 1));
+      setTimeout(() => {
+        this.done = false;
+        this.startTimer()
+      }, 100 * (this.cards.length - 1));
       this.$emit('reset');
     },
     start() {
       Object.assign(this.$data, this.initialState);
-      this.active = true;
       // start timer after transitions
-      setTimeout(() => {this.startTimer()}, 100 * (this.cards.length - 1));
+      this.active = true;
+      setTimeout(() => {
+        this.startTimer()
+      }, 100 * (this.cards.length - 1));
       this.$emit('start');
     }
   },
